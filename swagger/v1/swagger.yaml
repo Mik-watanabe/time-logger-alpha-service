@@ -1,0 +1,53 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/{id}":
+    get:
+      summary: Retrieves a user
+      operationId: GetUser
+      tags:
+      - User
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GetUserResponse"
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
+components:
+  schemas:
+    UserContent:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        attributes:
+          "$ref": "#components/schemas/UserContent"
+    GetUserResponse:
+      type: object
+      properties:
+        data:
+          "$ref": "#components/schemas/User"
