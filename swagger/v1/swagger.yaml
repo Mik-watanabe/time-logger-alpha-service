@@ -115,8 +115,7 @@ components:
     ListPosts:
       type: array
       items:
-        dataa:
-          "$ref": "#components/schemas/Post"
+        "$ref": "#components/schemas/Post"
     ListPostResponse:
       type: object
       properties:

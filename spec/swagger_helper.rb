@@ -83,7 +83,7 @@ RSpec.configure do |config|
           ListPosts: {
             type: 'array',
             items: {
-              dataa:  { '$ref' => '#components/schemas/Post' }
+              '$ref' => '#components/schemas/Post'
             }
           },
           ListPostResponse: {
