@@ -12,3 +12,16 @@ users = ["MikuWatanabe", "Anna"]
 users.each do |name|
     User.create(name: name)
 end
+
+Post.create(
+    title: 'ベトナム行けなくてとても萎える',
+    description: '本当ならば、あすから２泊三日で写真ちゃんとベトナムに行くはずだったが、有給がとれなくなったのでいけませんでしたチャンチャンって言う話',
+    content: '## 背景
+    有給はもっと早くから言えよな。
+    もっと早くから取れよなって言う話。',
+    status: 'draft'
+)
+
+
+
+

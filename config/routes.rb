@@ -5,5 +5,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users
+  scope :api do
+    scope :v1 do
+      resources :users
+      resources :posts
+    end
+  end
+
 end

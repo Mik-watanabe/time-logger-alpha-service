@@ -4,6 +4,38 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/posts":
+    get:
+      summary: Retrieves a list of posts
+      operationId: ListPosts
+      tags:
+      - Post
+      responses:
+        '200':
+          description: posts found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ListPostResponse"
+  "/api/v1/posts/{id}":
+    get:
+      summary: Retrieves a post
+      operationId: GetPost
+      tags:
+      - Post
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: post found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GetPostResponse"
   "/api/v1/users/{id}":
     get:
       summary: Retrieves a user
@@ -24,10 +56,10 @@ paths:
               schema:
                 "$ref": "#/components/schemas/GetUserResponse"
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:4000
 components:
   schemas:
     UserContent:
@@ -51,3 +83,42 @@ components:
       properties:
         data:
           "$ref": "#components/schemas/User"
+    PostContent:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        status:
+          type: integer
+        created:
+          type: string
+        updated:
+          type: string
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        attributes:
+          "$ref": "#components/schemas/PostContent"
+    GetPostResponse:
+      type: object
+      properties:
+        data:
+          "$ref": "#components/schemas/Post"
+    ListPosts:
+      type: array
+      items:
+        dataa:
+          "$ref": "#components/schemas/Post"
+    ListPostResponse:
+      type: object
+      properties:
+        data:
+          "$ref": "#components/schemas/ListPosts"

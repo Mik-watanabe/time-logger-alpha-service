@@ -24,10 +24,10 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'localhost:4000'
             }
           }
         }
@@ -53,6 +53,43 @@ RSpec.configure do |config|
             type: 'object',
             properties: {
               data: { '$ref' => '#components/schemas/User' }
+            }
+          },
+          PostContent: {
+            type: 'object',
+            properties: {
+              id: { type: 'integer' },
+              title: { type: 'string' },
+              content: { type: 'string' },
+              status: { type: 'integer' },
+              created: { type: 'string' },
+              updated: { type: 'string' }
+            }
+          },
+          Post: {
+            type: 'object',
+            properties: {
+              id: { type: 'integer' },
+              type: { type: 'string' },
+              attributes: { '$ref' => '#components/schemas/PostContent' }
+            }
+          },
+          GetPostResponse: {
+            type: 'object',
+            properties: {
+              data: { '$ref' => '#components/schemas/Post' }
+            }
+          },
+          ListPosts: {
+            type: 'array',
+            items: {
+              dataa:  { '$ref' => '#components/schemas/Post' }
+            }
+          },
+          ListPostResponse: {
+            type: 'object',
+            properties: {
+              data: { '$ref' => '#components/schemas/ListPosts' }
             }
           }
         }
